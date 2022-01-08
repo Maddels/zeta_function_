@@ -1,0 +1,8 @@
+177,1
+S,ComputeY,Computes the scheme Y_0 defined in the paper,0,1,0,0,0,0,0,0,0,63,,82,-38,-38,-38,-38,-38
+S,CountPointsOnZ,Counts the points on subscheme Z = Z_0 union (XX_0) of the projective curve X defined by F in extensions of degree 1 up to D,0,3,0,0,0,0,0,0,0,148,,0,0,82,,0,0,63,,82,-38,-38,-38,-38,-38
+S,CountPointsAboveZ,"Counts the points on the nonsingular curve defined by F that  lie above points on subscheme Y of the projective line, in extensions of degree 1 up to D",0,3,0,0,0,0,0,0,0,148,,0,0,82,,0,0,63,,82,-38,-38,-38,-38,-38
+S,ComputeCorrections,Computes the difference between point-counts in extensions from 1 up to D for the nonsingular curve defined by F versus the projective plane curve defined by F,0,2,0,0,0,0,0,0,0,148,,0,0,63,,82,-38,-38,-38,-38,-38
+S,CountPointsOnZ,Counts the points on subscheme Z = Z_0 union (XX_0) of the projective curve X defined by F in extensions of degree 1 up to D. Avoids counting points on (XX_0) if no_infty is set to true,0,4,0,0,0,0,0,0,0,36,,0,0,148,,0,0,82,,0,0,63,,82,-38,-38,-38,-38,-38
+S,CountPointsAboveZ,"Counts the points on the nonsingular curve defined by F that  lie above points on subscheme Y of the projective line, in extensions of degree 1 up to D. Avoids counting points above infinity if no_infty is set to true",0,4,0,0,0,0,0,0,0,36,,0,0,148,,0,0,82,,0,0,63,,82,-38,-38,-38,-38,-38
+S,ComputeCorrections,"Computes the difference between point-counts in extensions from 1 up to D for the nonsingular curve defined by F versus the projective plane curve defined by F. If opt = true, checks if we need to bother counting points above infinity or not",0,3,0,0,0,0,0,0,0,36,,0,0,148,,0,0,63,,82,-38,-38,-38,-38,-38
