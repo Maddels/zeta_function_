@@ -4,63 +4,65 @@ import "compute_zeta_function.m": OptimisedComputeZetaFunctionNumerator;
 import "compute_lift.m": lift_curve;
 R<x,y> := PolynomialRing(Integers(),2);
 
+SetGPU(true);
+
 SetVerbose("Tuitman",1);
-SetVerbose("Kyng",2);
+SetVerbose("Kyng",0);
 
 // // This example is from Tuitman's list of examples for q=p, available on Github
-// print "Curve", 1;
-// Q_1 :=y^4+(5*x-4)*y^3+(3*x^2+2*x-3)*y^2+(x^3+4*x^2-2*x+3)*y+(3*x^4-2*x^3-4*x^2+2*x+2); p_1 := 7;
-// Q_1 := ChangeRing(Q_1,  GF(p_1));
+print "Curve", 1;
+Q_1 :=y^3+(846*x^3+543*x+278)*y^2+(134*x^3+745*x^2+89*x+479)*y+43*x^3+173*x^2+716*x+617; p_1 := 1009;
+Q_1 := ChangeRing(Q_1,  GF(p_1));
 
-// res, t_1, t_2, t_3, t_4, mem := OptimisedComputeZetaFunctionNumerator(Q_1);
-// print t_1, t_2, t_3, t_4, mem, "\n";
-// Q_1_t, lift_time := lift_curve(Q_1, p_1);
-// print lift_time;
-// res_t := ZetaFunction(Q_1_t, p_1);
+res, t_1, t_2, t_3, t_4, mem := OptimisedComputeZetaFunctionNumerator(Q_1);
+print t_1, t_2, t_3, t_4, mem, "\n";
+Q_1_t, lift_time := lift_curve(Q_1, p_1);
+print lift_time;
+res_t := ZetaFunction(Q_1_t, p_1);
 // print res, res_t, "\n";
 
 // // This example is from Tuitman's list of examples for q=p, available on Github
-// print "Curve", 2;
-// Q_2:=y^5+(x^5+5*x^4+7*x^3+3*x^2+2*x+7)*y^4+(2*x^5+7*x^4+6*x^2+3*x+6)*y^3+(2*x^5+3*x^4+5*x^3+2*x^2+3*x+8)*y^2+(3*x^5+2*x^4+2*x^3+4*x^2+x+2)*y+(3*x^5+7*x^4+2*x^3+4*x^2+2*x+5); p_2 := 11;
-// Q_2 := ChangeRing(Q_2,  GF(p_2));
+print "Curve", 2;
+Q_2:=y^5+(x^5+5*x^4+7*x^3+3*x^2+2*x+7)*y^4+(2*x^5+7*x^4+6*x^2+3*x+6)*y^3+(2*x^5+3*x^4+5*x^3+2*x^2+3*x+8)*y^2+(3*x^5+2*x^4+2*x^3+4*x^2+x+2)*y+(3*x^5+7*x^4+2*x^3+4*x^2+2*x+5); p_2 := 11;
+Q_2 := ChangeRing(Q_2,  GF(p_2));
 
-// res, t_1, t_2, t_3, t_4, mem := OptimisedComputeZetaFunctionNumerator(Q_2);
-// print t_1, t_2, t_3, t_4, mem, "\n";
-// Q_2_t, lift_time  := lift_curve(Q_2, p_2);
-// print lift_time;
-// res_t := ZetaFunction(Q_2_t, p_2);
+res, t_1, t_2, t_3, t_4, mem := OptimisedComputeZetaFunctionNumerator(Q_2);
+print t_1, t_2, t_3, t_4, mem, "\n";
+Q_2_t, lift_time  := lift_curve(Q_2, p_2);
+print lift_time;
+res_t := ZetaFunction(Q_2_t, p_2);
 // print res, res_t, "\n";
 
 // // This example is from Castryck and Vermeulen's paper, for d=4
-// print "Curve", 3;
-// Q_3 := x^40 - x^34 + 2*x^33 + 3*x^32 - 2*x^31 - 3*x^30*y - x^30 - 3*x^28 + 2*x^26 - 3*x^24*y + x^24 - x^23*y + x^23 + 2*x^22*y - x^22 + x^21*y - x^21 - x^20*y^2 - 3*x^20*y - 3*x^19 + x^18*y - x^17 - 3*x^16*y + x^16 -
-//     2*x^15 - 3*x^14*y^2 + 2*x^14*y - x^14 - x^13*y^2 + 2*x^13*y + 3*x^13 + 2*x^12*y^2 - 2*x^12*y - 2*x^12 + x^11*y^2 - x^11*y - 3*x^11 - 3*x^10*y^3 - 3*x^10*y^2 + x^10 - 3*x^9*y + 2*x^9 - 3*x^8*y^2 + x^8 -
-//     x^7*y - 2*x^7 + 2*x^6*y^2 + x^6*y + x^6 - 2*x^5*y + 3*x^5 - x^4*y^3 + x^4*y^2 - x^4*y + 2*x^4 + 2*x^3*y^3 + x^3*y^2 - x^3*y + x^3 + 3*x^2*y^3 - x^2*y^2 + 2*x^2*y + 3*x^2 - 2*x*y^3 - 2*x*y + x + y^4 - y^3 -
-//     2*y + 2; p_3 := 7;
-// Q_3 := ChangeRing(Q_3,  GF(p_3));
+print "Curve", 3;
+Q_3 := x^40 - x^34 + 2*x^33 + 3*x^32 - 2*x^31 - 3*x^30*y - x^30 - 3*x^28 + 2*x^26 - 3*x^24*y + x^24 - x^23*y + x^23 + 2*x^22*y - x^22 + x^21*y - x^21 - x^20*y^2 - 3*x^20*y - 3*x^19 + x^18*y - x^17 - 3*x^16*y + x^16 -
+    2*x^15 - 3*x^14*y^2 + 2*x^14*y - x^14 - x^13*y^2 + 2*x^13*y + 3*x^13 + 2*x^12*y^2 - 2*x^12*y - 2*x^12 + x^11*y^2 - x^11*y - 3*x^11 - 3*x^10*y^3 - 3*x^10*y^2 + x^10 - 3*x^9*y + 2*x^9 - 3*x^8*y^2 + x^8 -
+    x^7*y - 2*x^7 + 2*x^6*y^2 + x^6*y + x^6 - 2*x^5*y + 3*x^5 - x^4*y^3 + x^4*y^2 - x^4*y + 2*x^4 + 2*x^3*y^3 + x^3*y^2 - x^3*y + x^3 + 3*x^2*y^3 - x^2*y^2 + 2*x^2*y + 3*x^2 - 2*x*y^3 - 2*x*y + x + y^4 - y^3 -
+    2*y + 2; p_3 := 7;
+Q_3 := ChangeRing(Q_3,  GF(p_3));
 
 
-// res, t_1, t_2, t_3, t_4, mem := OptimisedComputeZetaFunctionNumerator(Q_3);
-// print t_1, t_2, t_3, t_4, mem, "\n";
-// Q_3_t, lift_time  := lift_curve(Q_3, p_3);
-// print lift_time;
-// res_t := ZetaFunction(Q_3_t, p_3);
+res, t_1, t_2, t_3, t_4, mem := OptimisedComputeZetaFunctionNumerator(Q_3);
+print t_1, t_2, t_3, t_4, mem, "\n";
+Q_3_t, lift_time  := lift_curve(Q_3, p_3);
+print lift_time;
+res_t := ZetaFunction(Q_3_t, p_3);
 // print res, res_t, "\n";
 
 // // This example is from Castryck and Vermeulen's paper, for d=5
-// print "Curve", 4;
-// Q_4 := x^50 + x^47 + 7*x^46 + 8*x^45 - 4*x^44 + 6*x^43 + 3*x^42 + 4*x^41 + 5*x^40*y - 3*x^39 + 3*x^38 + 4*x^37*y + 4*x^37 - 6*x^36*y + 7*x^36 - 2*x^35*y - 5*x^35 - 6*x^34*y - 5*x^34 - 4*x^33*y - 8*x^33 + 2*x^32*y -
-//     6*x^32 + x^31*y - 7*x^30*y^2 - 2*x^30*y + x^30 - 3*x^29*y - 6*x^29 + 2*x^28*y + 2*x^28 + 6*x^27*y^2 + 6*x^27*y - 8*x^27 + 8*x^26*y^2 + 4*x^26*y - 6*x^26 - 3*x^25*y^2 + 8*x^25 + 6*x^24*y^2 + 4*x^24*y +
-//     7*x^24 + 3*x^23*y^2 - 8*x^23*y - x^23 + 5*x^22*y^2 + 5*x^22*y - 6*x^22 - 4*x^21*y^2 - 4*x^21*y + x^21 - 7*x^20*y^3 + 7*x^20*y^2 + 2*x^20*y + 8*x^20 + 3*x^19*y^2 - 8*x^19*y + 6*x^18*y^2 + 8*x^18*y - 7*x^18
-//     + 4*x^17*y^3 - 4*x^17*y^2 - 2*x^17*y - 2*x^17 - 6*x^16*y^3 - 3*x^16*y^2 - 6*x^16*y - 3*x^16 - 2*x^15*y^3 - 6*x^15*y^2 - 3*x^15*y - x^15 - 3*x^14*y^3 + 6*x^14*y^2 + 4*x^14*y + 4*x^14 + 8*x^13*y^3 - x^13*y^2
-//     + 4*x^13*y + 6*x^13 - x^12*y^3 + 4*x^12*y^2 + 5*x^11*y^3 - 4*x^11*y^2 + 7*x^11*y + 3*x^11 + 5*x^10*y^4 + 3*x^10*y^3 + 5*x^10*y^2 + x^10*y + 5*x^10 + 3*x^9*y^3 - 8*x^9*y + 4*x^9 + 7*x^8*y^3 + 2*x^8*y^2 +
-//     8*x^8*y - 8*x^8 + x^7*y^4 - 6*x^7*y^3 - x^7*y^2 - 6*x^7*y - 2*x^7 + 7*x^6*y^4 - 6*x^6*y^2 - 5*x^6*y + 7*x^6 + 8*x^5*y^4 - 2*x^5*y^3 - 2*x^5*y^2 - 7*x^5 + 6*x^4*y^4 - x^4*y^3 - x^4*y^2 + 6*x^4*y + 5*x^4 -
-//     5*x^3*y^4 + 4*x^3*y^3 + 6*x^3*y^2 - 3*x^3*y + 5*x^3 - 7*x^2*y^4 - 5*x^2*y^3 + 3*x^2*y^2 - 5*x^2 + 6*x*y^4 + 8*x*y^3 + 3*x*y^2 + 2*x*y - 2*x + y^5 - 6*y^4 - 8*y^3 - y^2 + 6*y + 7; p_4 := 17;
-// Q_4 := ChangeRing(Q_4,  GF(p_4));
+print "Curve", 4;
+Q_4 := x^50 + x^47 + 7*x^46 + 8*x^45 - 4*x^44 + 6*x^43 + 3*x^42 + 4*x^41 + 5*x^40*y - 3*x^39 + 3*x^38 + 4*x^37*y + 4*x^37 - 6*x^36*y + 7*x^36 - 2*x^35*y - 5*x^35 - 6*x^34*y - 5*x^34 - 4*x^33*y - 8*x^33 + 2*x^32*y -
+    6*x^32 + x^31*y - 7*x^30*y^2 - 2*x^30*y + x^30 - 3*x^29*y - 6*x^29 + 2*x^28*y + 2*x^28 + 6*x^27*y^2 + 6*x^27*y - 8*x^27 + 8*x^26*y^2 + 4*x^26*y - 6*x^26 - 3*x^25*y^2 + 8*x^25 + 6*x^24*y^2 + 4*x^24*y +
+    7*x^24 + 3*x^23*y^2 - 8*x^23*y - x^23 + 5*x^22*y^2 + 5*x^22*y - 6*x^22 - 4*x^21*y^2 - 4*x^21*y + x^21 - 7*x^20*y^3 + 7*x^20*y^2 + 2*x^20*y + 8*x^20 + 3*x^19*y^2 - 8*x^19*y + 6*x^18*y^2 + 8*x^18*y - 7*x^18
+    + 4*x^17*y^3 - 4*x^17*y^2 - 2*x^17*y - 2*x^17 - 6*x^16*y^3 - 3*x^16*y^2 - 6*x^16*y - 3*x^16 - 2*x^15*y^3 - 6*x^15*y^2 - 3*x^15*y - x^15 - 3*x^14*y^3 + 6*x^14*y^2 + 4*x^14*y + 4*x^14 + 8*x^13*y^3 - x^13*y^2
+    + 4*x^13*y + 6*x^13 - x^12*y^3 + 4*x^12*y^2 + 5*x^11*y^3 - 4*x^11*y^2 + 7*x^11*y + 3*x^11 + 5*x^10*y^4 + 3*x^10*y^3 + 5*x^10*y^2 + x^10*y + 5*x^10 + 3*x^9*y^3 - 8*x^9*y + 4*x^9 + 7*x^8*y^3 + 2*x^8*y^2 +
+    8*x^8*y - 8*x^8 + x^7*y^4 - 6*x^7*y^3 - x^7*y^2 - 6*x^7*y - 2*x^7 + 7*x^6*y^4 - 6*x^6*y^2 - 5*x^6*y + 7*x^6 + 8*x^5*y^4 - 2*x^5*y^3 - 2*x^5*y^2 - 7*x^5 + 6*x^4*y^4 - x^4*y^3 - x^4*y^2 + 6*x^4*y + 5*x^4 -
+    5*x^3*y^4 + 4*x^3*y^3 + 6*x^3*y^2 - 3*x^3*y + 5*x^3 - 7*x^2*y^4 - 5*x^2*y^3 + 3*x^2*y^2 - 5*x^2 + 6*x*y^4 + 8*x*y^3 + 3*x*y^2 + 2*x*y - 2*x + y^5 - 6*y^4 - 8*y^3 - y^2 + 6*y + 7; p_4 := 17;
+Q_4 := ChangeRing(Q_4,  GF(p_4));
 
 
-// res, t_1, t_2, t_3, t_4, mem := OptimisedComputeZetaFunctionNumerator(Q_4);
-// print t_1, t_2, t_3, t_4, mem, "\n";
+res, t_1, t_2, t_3, t_4, mem := OptimisedComputeZetaFunctionNumerator(Q_4);
+print t_1, t_2, t_3, t_4, mem, "\n";
 // Q_4_t, lift_time  := lift_curve(Q_4, p_4);
 // print lift_time;
 // res_t := ZetaFunction(Q_4_t, p_4);
@@ -70,17 +72,17 @@ SetVerbose("Kyng",2);
 // and that in an affine patch given by unimodular transformation with matrix M=[[-5,1], [-1,0]] there is a 
 // non-ordinary singularity at (0,0) that takes several blow ups to resolve
 
-// print "Curve", 5;
-// p_5 := 101;
-// Q_5 := x^35 + x^30 + x^29 + 5*x^28*y + x^28 + x^25 + x^24 + 4*x^23*y + x^23 + 4*x^22*y + x^22 + 10*x^21*y^2 + 4*x^21*y + x^21 + 32*x^20 + 91*x^19 + 3*x^18*y + x^18 + 3*x^17*y + x^17 + 6*x^16*y^2 + 3*x^16*y +
-//     x^16 + 6*x^15*y^2 + 3*x^15*y + 13*x^15 + 10*x^14*y^3 + 6*x^14*y^2 + 3*x^14*y + 93*x^14 + 64*x^13*y + 76*x^13 + 81*x^12*y + 59*x^12 + 3*x^11*y^2 + 2*x^11*y + x^11 + 3*x^10*y^2 + 2*x^10*y + 41*x^10 
-//     + 4*x^9*y^3 + 3*x^9*y^2 + 2*x^9*y + 81*x^9 + 4*x^8*y^3 + 3*x^8*y^2 + 14*x^8*y + 78*x^8 + 5*x^7*y^4 + 4*x^7*y^3 + 3*x^7*y^2 + 94*x^7*y + 22*x^7 + 32*x^6*y^2 + 76*x^6*y + 28*x^6 + 91*x^5*y^2 + 
-//     59*x^5*y + 50*x^5 + x^4*y^3 + x^4*y^2 + x^4*y + 50*x^4 + x^3*y^3 + x^3*y^2 + 31*x^3*y + 26*x^3 + x^2*y^4 + x^2*y^3 + x^2*y^2 + 94*x^2*y + 90*x^2 + x*y^4 + x*y^3 + x*y^2 + 55*x*y + 31*x + y^5 + y^4
-//     + y^3 + y^2 + 83*y + 41;
-// Q_5 := ChangeRing(Q_5,  GF(p_5));
+print "Curve", 5;
+p_5 := 101;
+Q_5 := x^35 + x^30 + x^29 + 5*x^28*y + x^28 + x^25 + x^24 + 4*x^23*y + x^23 + 4*x^22*y + x^22 + 10*x^21*y^2 + 4*x^21*y + x^21 + 32*x^20 + 91*x^19 + 3*x^18*y + x^18 + 3*x^17*y + x^17 + 6*x^16*y^2 + 3*x^16*y +
+    x^16 + 6*x^15*y^2 + 3*x^15*y + 13*x^15 + 10*x^14*y^3 + 6*x^14*y^2 + 3*x^14*y + 93*x^14 + 64*x^13*y + 76*x^13 + 81*x^12*y + 59*x^12 + 3*x^11*y^2 + 2*x^11*y + x^11 + 3*x^10*y^2 + 2*x^10*y + 41*x^10 
+    + 4*x^9*y^3 + 3*x^9*y^2 + 2*x^9*y + 81*x^9 + 4*x^8*y^3 + 3*x^8*y^2 + 14*x^8*y + 78*x^8 + 5*x^7*y^4 + 4*x^7*y^3 + 3*x^7*y^2 + 94*x^7*y + 22*x^7 + 32*x^6*y^2 + 76*x^6*y + 28*x^6 + 91*x^5*y^2 + 
+    59*x^5*y + 50*x^5 + x^4*y^3 + x^4*y^2 + x^4*y + 50*x^4 + x^3*y^3 + x^3*y^2 + 31*x^3*y + 26*x^3 + x^2*y^4 + x^2*y^3 + x^2*y^2 + 94*x^2*y + 90*x^2 + x*y^4 + x*y^3 + x*y^2 + 55*x*y + 31*x + y^5 + y^4
+    + y^3 + y^2 + 83*y + 41;
+Q_5 := ChangeRing(Q_5,  GF(p_5));
 
-// res, t_1, t_2, t_3, t_4, mem := OptimisedComputeZetaFunctionNumerator(Q_5);
-// print t_1, t_2, t_3, t_4, mem, "\n";
+res, t_1, t_2, t_3, t_4, mem := OptimisedComputeZetaFunctionNumerator(Q_5);
+print t_1, t_2, t_3, t_4, mem, "\n";
 // Q_5_t, lift_time  := lift_curve(Q_5, p_5);
 // print lift_time;
 // res_t := ZetaFunction(Q_5_t, p_5);
@@ -91,31 +93,31 @@ SetVerbose("Kyng",2);
 // The next 5 examples were generated using the magma function RandomCurveByGenus.
 
 
-// print "Curve", 6;
-// Q_6 := 8*x^6 + 9*x^5*y + 14*x^5 + 20*x^4*y^2 + 3*x^4*y + x^4 + 14*x^3*y^3 + 7*x^3*y^2 +
-//     12*x^3*y + 18*x^3 + 4*x^2*y^4 + 17*x^2*y^3 + 16*x^2*y^2 + 11*x^2*y + 22*x^2 +
-//     21*x*y^5 + 21*x*y^4 + 13*x*y^3 + 5*x*y^2 + 13*x*y + 19*x + 8*y^6 + 16*y^5 +
-//     11*y^4 + 19*y^3 + 7*y^2 + 13*y + 13; p_6 := 23;
-// Q_6 := ChangeRing(Q_6,  GF(p_6));
+print "Curve", 6;
+Q_6 := 8*x^6 + 9*x^5*y + 14*x^5 + 20*x^4*y^2 + 3*x^4*y + x^4 + 14*x^3*y^3 + 7*x^3*y^2 +
+    12*x^3*y + 18*x^3 + 4*x^2*y^4 + 17*x^2*y^3 + 16*x^2*y^2 + 11*x^2*y + 22*x^2 +
+    21*x*y^5 + 21*x*y^4 + 13*x*y^3 + 5*x*y^2 + 13*x*y + 19*x + 8*y^6 + 16*y^5 +
+    11*y^4 + 19*y^3 + 7*y^2 + 13*y + 13; p_6 := 23;
+Q_6 := ChangeRing(Q_6,  GF(p_6));
 
 
-// res, t_1, t_2, t_3, t_4, mem := OptimisedComputeZetaFunctionNumerator(Q_6);
-// print t_1, t_2, t_3, t_4, mem, "\n";
-// Q_6_t, lift_time  := lift_curve(Q_6, p_6);
-// print lift_time;
-// res_t := ZetaFunction(Q_6_t, p_6);
+res, t_1, t_2, t_3, t_4, mem := OptimisedComputeZetaFunctionNumerator(Q_6);
+print t_1, t_2, t_3, t_4, mem, "\n";
+Q_6_t, lift_time  := lift_curve(Q_6, p_6);
+print lift_time;
+res_t := ZetaFunction(Q_6_t, p_6);
 // print res, res_t, "\n";
 
-// print "Curve", 7;
-// Q_7 := 2*x^8 + 2*x^7*y + x^7 + 2*x^6*y + x^6 + 2*x^5*y^3 + 2*x^5*y^2 + 2*x^5*y + x^5 +
-//     2*x^4*y^4 + x^4*y^2 + 2*x^4 + 2*x^3*y^5 + 2*x^3*y^2 + 2*x^3 + x^2*y^6 +
-//     x^2*y^5 + 2*x^2*y^3 + 2*x^2*y + x^2 + x*y + 2*y^7 + y^6 + 2*y^5 + 2*y^4 +
-//     y^3 + 2*y; p_7 := 3;
-// Q_7 := ChangeRing(Q_7,  GF(p_7));
+print "Curve", 7;
+Q_7 := 2*x^8 + 2*x^7*y + x^7 + 2*x^6*y + x^6 + 2*x^5*y^3 + 2*x^5*y^2 + 2*x^5*y + x^5 +
+    2*x^4*y^4 + x^4*y^2 + 2*x^4 + 2*x^3*y^5 + 2*x^3*y^2 + 2*x^3 + x^2*y^6 +
+    x^2*y^5 + 2*x^2*y^3 + 2*x^2*y + x^2 + x*y + 2*y^7 + y^6 + 2*y^5 + 2*y^4 +
+    y^3 + 2*y; p_7 := 3;
+Q_7 := ChangeRing(Q_7,  GF(p_7));
 
 
-// res, t_1, t_2, t_3, t_4, mem := OptimisedComputeZetaFunctionNumerator(Q_7);
-// print t_1, t_2, t_3, t_4, mem, "\n";
+res, t_1, t_2, t_3, t_4, mem := OptimisedComputeZetaFunctionNumerator(Q_7);
+print t_1, t_2, t_3, t_4, mem, "\n";
 // Q_7_t, lift_time  := lift_curve(Q_7, p_7);
 // print lift_time;
 // res_t := ZetaFunction(Q_7_t, p_7);
@@ -132,36 +134,36 @@ Q_8 := 15*x^9 + 18*x^8*y + 15*x^8 + 3*x^7*y^2 + 12*x^7*y + 4*x^7 + 9*x^6*y^3 + 6
 Q_8 := ChangeRing(Q_8,  GF(p_8));
 
 
-// res, t_1, t_2, t_3, t_4, mem := OptimisedComputeZetaFunctionNumerator(Q_8);
-// print t_1, t_2, t_3, t_4, mem, "\n";
-Q_8_t, lift_time  := lift_curve(Q_8, p_8);
-print lift_time;
-res_t := ZetaFunction(Q_8_t, p_8);
-print res, res_t, "\n";
-
-// print "Curve", 9;
-// Q_9 := 31*x^5 + 2*x^4*y + 25*x^3*y^2 + 9*x^2*y^3 + 10*x*y^4 + 21*y^5 + x^4 + 12*x^3*y + 31*x^2*y^2 + 38*x*y^3 + 26*y^4 + 11*x^3 + 41*x*y^2 + 23*y^3 + 16*x^2 + 2*x*y + 6*y^2 + 3*x + 36*y + 1;
-// p_9 := 43;
-// Q_9 := ChangeRing(Q_9,  GF(p_9));
-
-// res, t_1, t_2, t_3, t_4, mem := OptimisedComputeZetaFunctionNumerator(Q_9);
-// print t_1, t_2, t_3, t_4, mem, "\n";
-// Q_9_t, lift_time := lift_curve(Q_9, p_9);
+res, t_1, t_2, t_3, t_4, mem := OptimisedComputeZetaFunctionNumerator(Q_8);
+print t_1, t_2, t_3, t_4, mem, "\n";
+// Q_8_t, lift_time  := lift_curve(Q_8, p_8);
 // print lift_time;
-// res_t := ZetaFunction(Q_9_t, p_9);
+// res_t := ZetaFunction(Q_8_t, p_8);
 // print res, res_t, "\n";
 
-// print "Curve", 10;
-// Q_10 := 4*x^6 + 9*x^5*y + x^4*y^2 + 4*x^2*y^4 + 2*x*y^5 + 3*x^5 + 2*x^4*y + 5*x^3*y^2 + x^2*y^3 + 7*x*y^4 + 3*y^5 + 5*x^4 + 7*x^3*y + 6*x^2*y^2 + 8*x*y^3 + 4*y^4 + 4*x^3 + 5*x^2*y + 10*x*y^2 + 3*y^3 + 7*x^2 +
-//     5*y^2 + 3*x + 9*y + 5;
-// p_10 := 11;
-// Q_10 := ChangeRing(Q_10,  GF(p_10));
+print "Curve", 9;
+Q_9 := 31*x^5 + 2*x^4*y + 25*x^3*y^2 + 9*x^2*y^3 + 10*x*y^4 + 21*y^5 + x^4 + 12*x^3*y + 31*x^2*y^2 + 38*x*y^3 + 26*y^4 + 11*x^3 + 41*x*y^2 + 23*y^3 + 16*x^2 + 2*x*y + 6*y^2 + 3*x + 36*y + 1;
+p_9 := 43;
+Q_9 := ChangeRing(Q_9,  GF(p_9));
 
-// res, t_1, t_2, t_3, t_4, mem := OptimisedComputeZetaFunctionNumerator(Q_10);
-// print t_1, t_2, t_3, t_4, mem, "\n";
-// Q_10_t, lift_time := lift_curve(Q_10, p_10);
-// print lift_time;
-// res_t := ZetaFunction(Q_10_t, p_10);
+res, t_1, t_2, t_3, t_4, mem := OptimisedComputeZetaFunctionNumerator(Q_9);
+print t_1, t_2, t_3, t_4, mem, "\n";
+Q_9_t, lift_time := lift_curve(Q_9, p_9);
+print lift_time;
+res_t := ZetaFunction(Q_9_t, p_9);
+// print res, res_t, "\n";
+
+print "Curve", 10;
+Q_10 := 4*x^6 + 9*x^5*y + x^4*y^2 + 4*x^2*y^4 + 2*x*y^5 + 3*x^5 + 2*x^4*y + 5*x^3*y^2 + x^2*y^3 + 7*x*y^4 + 3*y^5 + 5*x^4 + 7*x^3*y + 6*x^2*y^2 + 8*x*y^3 + 4*y^4 + 4*x^3 + 5*x^2*y + 10*x*y^2 + 3*y^3 + 7*x^2 +
+    5*y^2 + 3*x + 9*y + 5;
+p_10 := 11;
+Q_10 := ChangeRing(Q_10,  GF(p_10));
+
+res, t_1, t_2, t_3, t_4, mem := OptimisedComputeZetaFunctionNumerator(Q_10);
+print t_1, t_2, t_3, t_4, mem, "\n";
+Q_10_t, lift_time := lift_curve(Q_10, p_10);
+print lift_time;
+res_t := ZetaFunction(Q_10_t, p_10);
 // print res, res_t, "\n";
 
 
