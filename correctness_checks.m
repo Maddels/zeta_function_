@@ -97,11 +97,9 @@ function PlaneModelPointCountInExtension(F, p, g, r, use_trace_formula)
   traces := [Integers(p^lambda)!0: _ in [1..S]];
   alpha := func<lambda, tau, s | (-1)^s * &+[Binomial(-lambda, t)*Binomial(lambda, s-t) : t in [0..(tau-1)]]>;
   //computing all required traces
-  M_s := ComputeMatrix(F_lift, N, s, p);
-  traces[1] := Trace(M_s);
-  for s := 2 to S do
-    curr_power := curr_power * M_s;
-    traces[s] := Trace(curr_power);
+  for s := 1 to S do
+    M_s := ComputeMatrix(F_lift, N, s, p);
+    traces[s] := Trace(M_s^r);
   end for;
   //evaluating trace formula for r from 1 to D
   torus_count := Integers(p^lambda)!alpha(lambda, tau, 0);
